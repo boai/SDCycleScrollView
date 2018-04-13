@@ -35,6 +35,7 @@
 #import "TAPageControl.h"
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+#import "FLAnimatedImage.h"
 
 #define kCycleScrollViewInitialPageControlDotSize CGSizeMake(10, 10)
 
@@ -585,14 +586,40 @@ NSString * const ID = @"SDCycleScrollViewCell";
     NSString *imagePath = self.imagePathsGroup[itemIndex];
     
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
-        if ([imagePath hasPrefix:@"http"]) {
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
-        } else {
-            UIImage *image = [UIImage imageNamed:imagePath];
-            if (!image) {
-                image = [UIImage imageWithContentsOfFile:imagePath];
+        if ([imagePath isKindOfClass:[NSURL class]]) {
+            
+            if ([imagePath containsString:@"gif"])
+            {
+                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]];
+                FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:imageData];
+                if (!image) {
+                    image = [FLAnimatedImage animatedImageWithGIFData:imageData];
+                }
+                cell.imageView.animatedImage = image;
             }
-            cell.imageView.image = image;
+            else
+            {
+                [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+            }
+        } else {
+            
+            if ([imagePath containsString:@"gif"])
+            {
+                NSData *imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imagePath ofType:@""]];
+                FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:imageData];
+                if (!image) {
+                    image = [FLAnimatedImage animatedImageWithGIFData:imageData];
+                }
+                cell.imageView.animatedImage = image;
+            }
+            else
+            {
+                UIImage *image = [UIImage imageNamed:imagePath];
+                if (!image) {
+                    image = [UIImage imageWithContentsOfFile:imagePath];
+                }
+                cell.imageView.image = image;
+            }
         }
     } else if (!self.onlyDisplayText && [imagePath isKindOfClass:[UIImage class]]) {
         cell.imageView.image = (UIImage *)imagePath;

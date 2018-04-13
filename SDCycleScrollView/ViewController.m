@@ -59,7 +59,7 @@
 
     
     // 情景一：采用本地图片实现
-    NSArray *imageNames = @[@"h1.jpg",
+    NSArray *imageNames = @[@"20180403181455.gif",
                             @"h2.jpg",
                             @"h3.jpg",
                             @"h4.jpg",
@@ -68,9 +68,9 @@
     
     // 情景二：采用网络图片实现
     NSArray *imagesURLStrings = @[
-                           @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
-                           @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
-                           @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
+                                  @"https://d13yacurqjgara.cloudfront.net/users/345826/screenshots/1780193/dots18.gif",
+                                  @"https://d13yacurqjgara.cloudfront.net/users/345826/screenshots/1809343/dots17.1.gif",
+                                  @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
                            ];
     _imagesURLStrings = imagesURLStrings;
     
@@ -92,10 +92,10 @@
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, w, 180) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
-    [demoContainerView addSubview:cycleScrollView];
+//    [demoContainerView addSubview:cycleScrollView];
     cycleScrollView.scrollDirection = UICollectionViewScrollDirectionVertical;
     //         --- 轮播时间间隔，默认1.0秒，可自定义
-    //cycleScrollView.autoScrollTimeInterval = 4.0;
+    cycleScrollView.autoScrollTimeInterval = 10.0;
     
     
 // >>>>>>>>>>>>>>>>>>>>>>>>> demo轮播图2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -106,6 +106,7 @@
     cycleScrollView2.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     cycleScrollView2.titlesGroup = titles;
     cycleScrollView2.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+    cycleScrollView2.autoScrollTimeInterval = 10.0;
     [demoContainerView addSubview:cycleScrollView2];
     
     //         --- 模拟加载延迟
@@ -131,7 +132,7 @@
     cycleScrollView3.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
     cycleScrollView3.imageURLStringsGroup = imagesURLStrings;
     
-    [demoContainerView addSubview:cycleScrollView3];
+//    [demoContainerView addSubview:cycleScrollView3];
     
 // >>>>>>>>>>>>>>>>>>>>>>>>> demo轮播图4 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
@@ -148,7 +149,7 @@
     cycleScrollView4.titlesGroup = [titlesArray copy];
     [cycleScrollView4 disableScrollGesture];
     
-    [demoContainerView addSubview:cycleScrollView4];
+//    [demoContainerView addSubview:cycleScrollView4];
     
     
 // >>>>>>>>>>>>>>>>>>>>>>>>> demo轮播图5 自定义cell的轮播图 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
