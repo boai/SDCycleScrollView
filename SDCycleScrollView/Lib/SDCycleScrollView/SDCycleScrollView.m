@@ -586,7 +586,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     NSString *imagePath = self.imagePathsGroup[itemIndex];
     
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
-        if ([imagePath isKindOfClass:[NSURL class]]) {
+        if ([imagePath hasPrefix:@"http"]) {
             
             if ([imagePath containsString:@"gif"])
             {
