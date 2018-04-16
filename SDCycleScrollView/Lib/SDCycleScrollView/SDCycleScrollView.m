@@ -605,9 +605,9 @@ NSString * const ID = @"SDCycleScrollViewCell";
             {
                 NSData *imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imagePath ofType:@""]];
                 FLAnimatedImage *image = [[FLAnimatedImage alloc] init];
-                if (!image) {
+//                if (!image) {
                     image = [FLAnimatedImage animatedImageWithGIFData:imageData];
-                }
+//                }
                 cell.imageView.animatedImage = image;
             }
             else

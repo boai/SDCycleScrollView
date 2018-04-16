@@ -92,7 +92,7 @@
     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, w, 180) shouldInfiniteLoop:YES imageNamesGroup:imageNames];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
-//    [demoContainerView addSubview:cycleScrollView];
+    [demoContainerView addSubview:cycleScrollView];
     cycleScrollView.scrollDirection = UICollectionViewScrollDirectionVertical;
     //         --- 轮播时间间隔，默认1.0秒，可自定义
     cycleScrollView.autoScrollTimeInterval = 10.0;
