@@ -588,13 +588,11 @@ NSString * const ID = @"SDCycleScrollViewCell";
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
         if ([imagePath hasPrefix:@"http"]) {
             
-            if ([imagePath containsString:@"gif"])
+            if ([imagePath hasSuffix:@"gif"])
             {
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imagePath]];
-                FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:imageData];
-                if (!image) {
-                    image = [FLAnimatedImage animatedImageWithGIFData:imageData];
-                }
+                FLAnimatedImage *image = [[FLAnimatedImage alloc] init];
+                image = [FLAnimatedImage animatedImageWithGIFData:imageData];
                 cell.imageView.animatedImage = image;
             }
             else
@@ -603,10 +601,10 @@ NSString * const ID = @"SDCycleScrollViewCell";
             }
         } else {
             
-            if ([imagePath containsString:@"gif"])
+            if ([imagePath hasSuffix:@"gif"])
             {
                 NSData *imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imagePath ofType:@""]];
-                FLAnimatedImage *image = [[FLAnimatedImage alloc] initWithAnimatedGIFData:imageData];
+                FLAnimatedImage *image = [[FLAnimatedImage alloc] init];
                 if (!image) {
                     image = [FLAnimatedImage animatedImageWithGIFData:imageData];
                 }
